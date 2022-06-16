@@ -1,17 +1,21 @@
 import React from 'react'
 import './headerStyles.scss'
+import { Outlet, Link } from 'react-router-dom'
 
 export default function Header() {
     return (
-        <header className="header-root">
-            <div className="header-logo">
-                MyFits
+        <div>
+            <header className="header-root">
+                <div className="header-logo">
+                    MyFits
             </div>
 
-            <div className="header-right">
-                <button className="header-button" to="/">Home</button>
-                <button className="header-button" to="/profile">Profile</button>
-            </div>
-        </header>
+                <div className="header-right">
+                    <Link className="header-button" to="/home">Home</Link>
+                    <Link className="header-button" to="/profile">Profile</Link>
+                </div>
+            </header>
+            <Outlet />
+        </div>
     )
 }
