@@ -8,11 +8,10 @@ export default function Header() {
             <header className="header-root">
                 <div className="header-logo">
                     MyFits
-            </div>
-
+                </div>
                 <div className="header-right">
-                    <Link className="header-button" to="/home">Home</Link>
-                    <Link className="header-button" to="/profile">Profile</Link>
+                    <Link className="header-link" to="/home">Home</Link>
+                    <Link className="header-link" to="/closet">Closet</Link>
                 </div>
             </header>
             <Outlet />

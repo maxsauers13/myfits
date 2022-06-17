@@ -1,0 +1,34 @@
+@import '../../styles/variables.scss';
+
+.closet-container {
+    display: flex;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 40px;
+}
+
+.closet-column {
+    flex: 1;
+    color: $clr-blue;
+    font-size: 24px;
+}
+
+.closet-column:first-child {
+    margin-right: 20px;
+}
+
+.closet-img {
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.add-button {
+    font-size: 18px;
+    background-color: $clr-blue;
+    border-color: $clr-moss;
+    color: $clr-sage;
+    border-radius: 5px;
+    height: 50px;
+    width: 150px;
+    margin-top: 100px;
+}

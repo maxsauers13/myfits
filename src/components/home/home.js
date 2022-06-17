@@ -23,3 +23,5 @@ export default function Home() {
         </body>
     )
 }
+
+// create multi-check list to toggle on/off a type of clothing
