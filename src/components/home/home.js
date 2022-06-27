@@ -11,10 +11,10 @@ export default function Home() {
                     Create A Fit!
                 </div>
                 <div className="padding">
-                    <img className="shirt-img" src={shirt} alt="Shirt"></img>
+                    <img className="clothes-img shirt-img" src={shirt} alt="Shirt"></img>
                 </div>
                 <div className="padding">
-                    <img className="pants-img" src={pants} alt="Pants"></img>
+                    <img className="clothes-img pants-img" src={pants} alt="Pants"></img>
                 </div>
                 <div className="padding">
                     <button className="fit-button">Fit</button>

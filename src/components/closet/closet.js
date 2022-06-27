@@ -12,11 +12,11 @@ export default function Closet() {
             <div className="closet-container">
                 <div className="closet-column">
                     Tops
-                    <img className="closet-img" src={shirt} alt="shirt"></img>
+                    <img className="clothes-img closet-img" src={shirt} alt="shirt"></img>
                 </div>
                 <div className="closet-column">
                     Bottoms
-                    <img className="closet-img" src={pants} alt="pants"></img>
+                    <img className="clothes-img closet-img" src={pants} alt="pants"></img>
                 </div>
             </div>
             <button className="add-button">Add to Closet</button>

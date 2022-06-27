@@ -5,3 +5,17 @@
     color: $clr-blue;
     padding: 30px;
 }
+
+.wrapper {
+    background-color: $clr-sage;
+    min-height: 60%;
+    width: 100%;
+    text-align: center;
+}
+
+.clothes-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+}
