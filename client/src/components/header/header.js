@@ -16,9 +16,6 @@ export default function Header() {
                         <li>
                             <Link className="header-link" to="/closet">Closet</Link>
                         </li>
-                        <li>
-                            <Link className="header-link" to="/login">Login</Link>
-                        </li>
                     </ul>
                 </nav>
             </header>

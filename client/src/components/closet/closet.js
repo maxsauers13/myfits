@@ -3,11 +3,11 @@ import './closetStyles.scss'
 import shirt from '../../img/shirt.jpeg'
 import pants from '../../img/pants.jpeg'
 
-export default function Closet() {
+export default function Closet(props) {
     return (
         <div className="wrapper">
             <div className="title">
-                Your Closet
+                {props.username}'s Closet
             </div>
             <div className="closet-container">
                 <div className="closet-column">

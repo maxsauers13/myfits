@@ -7,8 +7,6 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-
-
     const register = () => {
         Axios.post('http://localhost:3001/register', {
             username: usernameRegister,
@@ -23,7 +21,12 @@ export default function Login() {
             username: username,
             password: password
         }).then((response) => {
-            console.log(response)
+            if (response.data.message) {
+                console.log(response.data.message)
+            } else {
+                localStorage.setItem("token", response.data[0].username)
+                window.location.replace("/home")
+            }
         })
     }
 
