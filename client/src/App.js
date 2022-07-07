@@ -4,6 +4,7 @@ import Header from './components/header/header'
 import Home from './components/home/home'
 import Closet from './components/closet/closet'
 import Login from './components/login/login'
+import ClosetAdd from './components/closet/closetAdd'
 
 export default function App() {
     if (!localStorage.getItem("token")) {
@@ -15,6 +16,7 @@ export default function App() {
             <Route path="/" element={<Header />}>
                 <Route path="home" element={<Home />} />
                 <Route path="closet" element={<Closet username={localStorage.getItem("token")} />} />
+                <Route path="closet/add" element={<ClosetAdd />} />
             </Route>
         </Routes>
     )

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
+import Card from '../card/card'
 
 export default function Login() {
     const [usernameRegister, setUsernameRegister] = useState("");
@@ -32,46 +33,48 @@ export default function Login() {
 
     return (
         <div className="wrapper">
-            <div className="title">
-                Login
-            </div>
-            <label>Username</label>
-            <input
-                type="text"
-                onChange={(e) => {
-                    setUsername(e.target.value);
-                }}
-            />
-            <br></br>
-            <label>Password</label>
-            <input
-                type="password"
-                onChange={(e) => {
-                    setPassword(e.target.value);
-                }}
-            />
-            <br></br>
-            <button onClick={login}>Login</button>
-            <div className="title">
-                Register
-            </div>
-            <label>Username</label>
-            <input
-                type="text"
-                onChange={(e) => {
-                    setUsernameRegister(e.target.value);
-                }}
-            />
-            <br></br>
-            <label>Password</label>
-            <input
-                type="password"
-                onChange={(e) => {
-                    setPasswordRegister(e.target.value);
-                }}
-            />
-            <br></br>
-            <button onClick={register}>Register</button>
+            <Card>
+                <div className="title">
+                    Login
+                </div>
+                <label>Username</label>
+                <input
+                    type="text"
+                    onChange={(e) => {
+                        setUsername(e.target.value)
+                    }}
+                />
+                <br></br>
+                <label>Password</label>
+                <input
+                    type="password"
+                    onChange={(e) => {
+                        setPassword(e.target.value)
+                    }}
+                />
+                <br></br>
+                <button onClick={login}>Login</button>
+                <div className="title">
+                    Register
+                </div>
+                <label>Username</label>
+                <input
+                    type="text"
+                    onChange={(e) => {
+                        setUsernameRegister(e.target.value)
+                    }}
+                />
+                <br></br>
+                <label>Password</label>
+                <input
+                    type="password"
+                    onChange={(e) => {
+                        setPasswordRegister(e.target.value)
+                    }}
+                />
+                <br></br>
+                <button onClick={register}>Register</button>
+            </Card>
         </div>
     )
 }

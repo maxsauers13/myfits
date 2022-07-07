@@ -2,9 +2,7 @@
 
 .closet-container {
     display: flex;
-    width: 60%;
-    margin-left: 20%;
-    margin-top: 40px;
+    padding: 40px;
 }
 
 .closet-column {
@@ -22,13 +20,38 @@
     margin-top: 50px;
 }
 
+.img-container {
+    display: flex;
+}
+
+.closet-icon {
+    margin-top: 35%;
+    height: 30px;
+    padding: 20px;
+}
+
+.add-wrapper {
+    margin-top: 80px;
+    padding: 20px;
+}
+
 .add-button {
-    font-size: 18px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    padding: .5rem;
+    border-radius: .5rem;
+    color: $clr-white;
     background-color: $clr-blue;
-    border-color: $clr-moss;
+}
+
+.add-button:hover {
     color: $clr-sage;
-    border-radius: 5px;
-    height: 50px;
-    width: 150px;
-    margin-top: 100px;
+}
+
+.form {
+    padding: 40px;
+}
+
+.form-input {
+    margin-bottom: 2rem;
 }
