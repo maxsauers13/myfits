@@ -9,14 +9,17 @@ import next from '../../img/next.png'
 
 export default function Closet(props) {
     const [topImage, setTopImage] = useState();
+    const [bottomImage, setBottomImage] = useState();
     const [topIndex, setTopIndex] = useState(1);
-    const [maxtopIndex, setMaxTopIndex] = useState();
+    const [bottomIndex, setBottomIndex] = useState(1);
+    const [maxTopIndex, setMaxTopIndex] = useState();
+    const [maxBottomIndex, setMaxBottomIndex] = useState();
 
     useEffect(() => {
-        Axios.post('http://localhost:3001/clothesSum', {
-            owner: localStorage.getItem('token')
+        Axios.post('http://localhost:3001/clothesCount', {
+            owner: localStorage.getItem('token'),
+            category: "shirt"
         }).then((response) => {
-            console.log(response);
             setMaxTopIndex(response.data[0].totalItems);
         })
     }, [])
@@ -24,30 +27,64 @@ export default function Closet(props) {
     useEffect(() => {
         Axios.post('http://localhost:3001/clothes', {
             index: topIndex,
-            owner: localStorage.getItem('token')
+            owner: localStorage.getItem('token'),
+            category: "shirt"
         }).then((response) => {
-            console.log(response);
             const imageURL = response.data[0].image;
             setTopImage(imageURL);
         })
     }, [topIndex])
 
+    useEffect(() => {
+        Axios.post('http://localhost:3001/clothesCount', {
+            owner: localStorage.getItem('token'),
+            category: "pants"
+        }).then((response) => {
+            setMaxBottomIndex(response.data[0].totalItems);
+        })
+    }, [])
+
+    useEffect(() => {
+        Axios.post('http://localhost:3001/clothes', {
+            index: bottomIndex,
+            owner: localStorage.getItem('token'),
+            category: "pants"
+        }).then((response) => {
+            const imageURL = response.data[0].image;
+            setBottomImage(imageURL);
+        })
+    }, [bottomIndex])
+
     function handleDecreaseTop() {
         if (topIndex > 1) {
             setTopIndex(topIndex - 1);
         } else {
-            setTopIndex(maxtopIndex);
+            setTopIndex(maxTopIndex);
         }
-        console.log(topIndex);
     }
 
     function handleIncreaseTop() {
-        if (topIndex < maxtopIndex) {
+        if (topIndex < maxTopIndex) {
             setTopIndex(topIndex + 1);
         } else {
             setTopIndex(1);
         }
-        console.log(topIndex);
+    }
+
+    function handleDecreaseBottom() {
+        if (bottomIndex > 1) {
+            setBottomIndex(bottomIndex - 1);
+        } else {
+            setBottomIndex(maxBottomIndex);
+        }
+    }
+
+    function handleIncreaseBottom() {
+        if (bottomIndex < maxBottomIndex) {
+            setBottomIndex(bottomIndex + 1);
+        } else {
+            setBottomIndex(1);
+        }
     }
 
     return (
@@ -68,9 +105,9 @@ export default function Closet(props) {
                     <div className="closet-column">
                         Bottoms
                         <div className="img-container">
-                            <img className="closet-icon" src={previous} alt="previous"></img>
-                            <img className="clothes-img closet-img" src={pants} alt="pants"></img>
-                            <img className="closet-icon" src={next} alt="next"></img>
+                            <img className="closet-icon" src={previous} alt="previous" onClick={handleDecreaseBottom}></img>
+                            <img className="clothes-img closet-img" src={bottomImage} alt="pants"></img>
+                            <img className="closet-icon" src={next} alt="next" onClick={handleIncreaseBottom}></img>
                         </div>
                     </div>
                 </div>

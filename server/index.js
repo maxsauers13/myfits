@@ -88,9 +88,10 @@ app.post("/closetAdd", upload.single('file'), (req, res) => {
 app.post('/clothes', (req, res) => {
     const index = req.body.index;
     const owner = req.body.owner;
+    const category = req.body.category;
 
-    db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE owner = ? ORDER BY id LIMIT ?) AS top ORDER BY id DESC LIMIT 1",
-        [owner, index],
+    db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE (owner = ? AND category = ?) ORDER BY id LIMIT ?) AS top ORDER BY id DESC LIMIT 1",
+        [owner, category, index],
         (err, result) => {
             if (err) {
                 res.send({ err: err });
@@ -101,11 +102,12 @@ app.post('/clothes', (req, res) => {
         })
 })
 
-app.post('/clothesSum', (req, res) => {
+app.post('/clothesCount', (req, res) => {
     const owner = req.body.owner;
+    const category = req.body.category;
 
-    db.query("SELECT COUNT(*) AS totalItems FROM Clothes WHERE owner = ?",
-        [owner],
+    db.query("SELECT COUNT(*) AS totalItems FROM Clothes WHERE (owner = ? AND category = ?)",
+        [owner, category],
         (err, result) => {
             if (err) {
                 res.send({ err: err });
