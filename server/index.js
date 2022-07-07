@@ -70,19 +70,42 @@ app.post("/closetAdd", upload.single('file'), (req, res) => {
     } else {
         console.log(req.file.filename);
         var imgsrc = 'http://127.0.0.1:3001/images/' + req.file.filename;
-        var insertData = "INSERT INTO Clothes (image) VALUES (?)";
-        db.query(insertData, [imgsrc], (err, result) => {
+        const owner = req.body.owner;
+        const category = req.body.category;
+        const style = req.body.style;
+
+        var insertData = "INSERT INTO Clothes (image, owner, category, style) VALUES (?, ?, ?, ?)";
+        db.query(insertData, [imgsrc, owner, category, style], (err, result) => {
             if (err) {
                 console.log("error: " + err);
             } else {
-                console.log("file uploaded: " + result);
+                console.log("file uploaded");
             }
         })
     }
 });
 
-app.get('/clothes', (req, res) => {
-    db.query("SELECT * FROM Clothes WHERE id = 2",
+app.post('/clothes', (req, res) => {
+    const index = req.body.index;
+    const owner = req.body.owner;
+
+    db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE owner = ? ORDER BY id LIMIT ?) AS top ORDER BY id DESC LIMIT 1",
+        [owner, index],
+        (err, result) => {
+            if (err) {
+                res.send({ err: err });
+            }
+            else {
+                res.send(result);
+            }
+        })
+})
+
+app.post('/clothesSum', (req, res) => {
+    const owner = req.body.owner;
+
+    db.query("SELECT COUNT(*) AS totalItems FROM Clothes WHERE owner = ?",
+        [owner],
         (err, result) => {
             if (err) {
                 res.send({ err: err });

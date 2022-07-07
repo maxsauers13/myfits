@@ -11,8 +11,11 @@ export default function ClosetAdd() {
 
     const closetAdd = async () => {
         const formData = new FormData()
-        formData.append('file', file)
-        formData.append('filename', fileName)
+        formData.append('file', file);
+        formData.append('filename', fileName);
+        formData.append('owner', localStorage.getItem('token'));
+        formData.append('category', category);
+        formData.append('style', style);
 
         try {
             const res = await Axios.post(
