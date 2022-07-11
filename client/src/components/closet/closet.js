@@ -1,6 +1,5 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
-import Axios from 'axios'
 import Card from '../card/card'
 import './closetStyles.scss'
 import previous from '../../img/previous.png'
@@ -13,15 +12,15 @@ export default function Closet(props) {
     useEffect(() => {
         closetCtx.getClothesCount("shirt", closetCtx.setMaxTopIndex);
         closetCtx.getClothesCount("pants", closetCtx.setMaxBottomIndex);
-    }, [])
+    }, [closetCtx])
 
     useEffect(() => {
         closetCtx.getClosetClothing(closetCtx.topIndex, "shirt", closetCtx.setTopImage);
-    }, [closetCtx.topIndex])
+    }, [closetCtx, closetCtx.topIndex])
 
     useEffect(() => {
         closetCtx.getClosetClothing(closetCtx.bottomIndex, "pants", closetCtx.setBottomImage);
-    }, [closetCtx.bottomIndex])
+    }, [closetCtx, closetCtx.bottomIndex])
 
     return (
         <div className="wrapper">
