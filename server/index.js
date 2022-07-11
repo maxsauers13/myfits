@@ -118,6 +118,23 @@ app.post('/clothesCount', (req, res) => {
         })
 })
 
+app.post('/fit', (req, res) => {
+    const owner = req.body.owner;
+    const category = req.body.category;
+    const index = Math.floor(Math.random());
+
+    db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE (owner = ? AND category = ?) ORDER BY id LIMIT ?) AS top ORDER BY id DESC LIMIT 1",
+        [owner, category, index],
+        (err, result) => {
+            if (err) {
+                res.send({ err: err });
+            }
+            else {
+                res.send(result);
+            }
+        })
+})
+
 app.listen(3001, () => {
     console.log("running server");
 });
