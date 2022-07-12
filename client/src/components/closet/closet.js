@@ -4,23 +4,23 @@ import Card from '../card/card'
 import './closetStyles.scss'
 import previous from '../../img/previous.png'
 import next from '../../img/next.png'
-import ClothesContext from '../../context/closet-context'
+import ClothesContext from '../../context/clothes-context'
 
 export default function Closet(props) {
-    const closetCtx = useContext(ClothesContext);
+    const clothesCtx = useContext(ClothesContext);
 
     useEffect(() => {
-        closetCtx.getClothesCount("shirt", closetCtx.setMaxTopIndex);
-        closetCtx.getClothesCount("pants", closetCtx.setMaxBottomIndex);
-    }, [closetCtx])
+        clothesCtx.getClothesCount("shirt", clothesCtx.setMaxTopIndex);
+        clothesCtx.getClothesCount("pants", clothesCtx.setMaxBottomIndex);
+    }, [clothesCtx])
 
     useEffect(() => {
-        closetCtx.getClosetClothing(closetCtx.topIndex, "shirt", closetCtx.setTopImage);
-    }, [closetCtx, closetCtx.topIndex])
+        clothesCtx.getClosetClothing(clothesCtx.topIndex, "shirt", clothesCtx.setTopClosetImage);
+    }, [clothesCtx, clothesCtx.topIndex])
 
     useEffect(() => {
-        closetCtx.getClosetClothing(closetCtx.bottomIndex, "pants", closetCtx.setBottomImage);
-    }, [closetCtx, closetCtx.bottomIndex])
+        clothesCtx.getClosetClothing(clothesCtx.bottomIndex, "pants", clothesCtx.setBottomClosetImage);
+    }, [clothesCtx, clothesCtx.bottomIndex])
 
     return (
         <div className="wrapper">
@@ -32,17 +32,17 @@ export default function Closet(props) {
                     <div className="closet-column">
                         Tops
                         <div className="img-container">
-                            <img className="closet-icon" src={previous} alt="previous" onClick={closetCtx.handleDecreaseTop}></img>
-                            <img className="clothes-img closet-img" src={closetCtx.topImage} alt="shirt"></img>
-                            <img className="closet-icon" src={next} alt="next" onClick={closetCtx.handleIncreaseTop}></img>
+                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseTop}></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.topClosetImage} alt="shirt"></img>
+                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseTop}></img>
                         </div>
                     </div>
                     <div className="closet-column">
                         Bottoms
                         <div className="img-container">
-                            <img className="closet-icon" src={previous} alt="previous" onClick={closetCtx.handleDecreaseBottom}></img>
-                            <img className="clothes-img closet-img" src={closetCtx.bottomImage} alt="pants"></img>
-                            <img className="closet-icon" src={next} alt="next" onClick={closetCtx.handleIncreaseBottom}></img>
+                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseBottom}></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.bottomClosetImage} alt="pants"></img>
+                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseBottom}></img>
                         </div>
                     </div>
                 </div>
