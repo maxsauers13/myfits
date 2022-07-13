@@ -6,7 +6,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: $clr-blue;
+    background-color: $clr-white;
+    box-shadow: 5px 5px 5px $clr-black;
 }
 
 .header-logo {
@@ -14,26 +15,6 @@
     height: 4.5rem;
     margin-left: 3rem;
 }
-
-// .header-right {
-//     float: right;
-//     padding: 24px;
-// }
-
-// .header-link {
-//     margin-right: 8px;
-//     font-size: 18px;
-//     background-color: $clr-sage;
-//     border-color: $clr-moss;
-//     color: $clr-blue;
-//     border-radius: 5px;
-//     height: 50px;
-//     width: 200px;
-// }
-
-// .header-link:hover {
-//     background-color: $clr-moss;
-// }
 
 .header ul {
     list-style: none;
@@ -47,11 +28,11 @@
 
 .header a {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     padding: .5rem;
     border-radius: .5rem;
-    color: $clr-white;
-    background-color: $clr-sage;
+    color: $clr-black;
+    background-color: $clr-white;
 }
 
 .header a:hover {

@@ -6,6 +6,10 @@ const ClothesContext = createContext({
     bottomFitImage: "",
     topClosetImage: "",
     bottomClosetImage: "",
+    topClosetNextImage: "",
+    topClosetPrevImage: "",
+    bottomClosetNextImage: "",
+    bottomClosetPrevImage: "",
     topIndex: 0,
     bottomIndex: 0,
     maxTopIndex: 0,
@@ -17,6 +21,10 @@ export function ClothesContextProvider(props) {
     const [bottomFitImage, setBottomFitImage] = useState();
     const [topClosetImage, setTopClosetImage] = useState();
     const [bottomClosetImage, setBottomClosetImage] = useState();
+    const [topClosetNextImage, setTopClosetNextImage] = useState();
+    const [topClosetPrevImage, setTopClosetPrevImage] = useState();
+    const [bottomClosetNextImage, setBottomClosetNextImage] = useState();
+    const [bottomClosetPrevImage, setBottomClosetPrevImage] = useState();
     const [topIndex, setTopIndex] = useState(1);
     const [bottomIndex, setBottomIndex] = useState(1);
     const [maxTopIndex, setMaxTopIndex] = useState();
@@ -38,11 +46,16 @@ export function ClothesContextProvider(props) {
             owner: localStorage.getItem('token'),
             category: category
         }).then((response) => {
+            console.log("max: " + response.data[0].totalItems);
             setMaxIndex(response.data[0].totalItems);
         })
     }
 
-    function getClosetClothing(index, category, setImage) {
+    function getClosetClothing(index, maxIndex, category, setImage, setNextImage, setPrevImage) {
+        const nextIndex = (index + 1) % (maxIndex + 1) ? (index + 1) % (maxIndex + 1) : (index + 1) % (maxIndex + 1) + 1;
+        const prevIndex = (index - 1) ? (index - 1) : maxIndex;
+
+        console.log("index: " + index + " next: " + nextIndex + " prev: " + prevIndex);
         Axios.post('http://localhost:3001/clothes', {
             index: index,
             owner: localStorage.getItem('token'),
@@ -50,6 +63,24 @@ export function ClothesContextProvider(props) {
         }).then((response) => {
             const imageURL = response.data[0].image;
             setImage(imageURL);
+        })
+
+        Axios.post('http://localhost:3001/clothes', {
+            index: nextIndex,
+            owner: localStorage.getItem('token'),
+            category: category
+        }).then((response) => {
+            const imageURL = response.data[0].image;
+            setNextImage(imageURL);
+        })
+
+        Axios.post('http://localhost:3001/clothes', {
+            index: prevIndex,
+            owner: localStorage.getItem('token'),
+            category: category
+        }).then((response) => {
+            const imageURL = response.data[0].image;
+            setPrevImage(imageURL);
         })
     }
 
@@ -90,6 +121,10 @@ export function ClothesContextProvider(props) {
         bottomFitImage: bottomFitImage,
         topClosetImage: topClosetImage,
         bottomClosetImage: bottomClosetImage,
+        topClosetNextImage: topClosetNextImage,
+        topClosetPrevImage: topClosetPrevImage,
+        bottomClosetNextImage: bottomClosetNextImage,
+        bottomClosetPrevImage: bottomClosetPrevImage,
         topIndex: topIndex,
         bottomIndex: bottomIndex,
         maxTopIndex: maxTopIndex,
@@ -99,6 +134,10 @@ export function ClothesContextProvider(props) {
         setBottomFitImage: setBottomFitImage,
         setTopClosetImage: setTopClosetImage,
         setBottomClosetImage: setBottomClosetImage,
+        setTopClosetNextImage: setTopClosetNextImage,
+        setTopClosetPrevImage: setTopClosetPrevImage,
+        setBottomClosetNextImage: setBottomClosetNextImage,
+        setBottomClosetPrevImage: setBottomClosetPrevImage,
         setTopIndex: setTopIndex,
         setBottomIndex: setBottomIndex,
         setMaxTopIndex: setMaxTopIndex,

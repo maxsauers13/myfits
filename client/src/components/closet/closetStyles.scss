@@ -16,8 +16,12 @@
 }
 
 .closet-img {
+    height: 250px;
+    width: 250px;
     border-radius: 10px;
+    box-shadow: 5px;
     margin-top: 50px;
+    z-index: 1;
 }
 
 .img-container {
@@ -25,7 +29,7 @@
 }
 
 .closet-icon {
-    margin-top: 35%;
+    margin-top: 20%;
     height: 30px;
     padding: 20px;
 }
@@ -54,4 +58,22 @@
 
 .form-input {
     margin-bottom: 2rem;
+}
+
+.rotator-next-img {
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 75px;
+    margin-right: -100px;
+    position: relative;
+    right: 100px;
+}
+
+.rotator-prev-img {
+    height: 200px;
+    border-radius: 10px;
+    margin-top: 75px;
+    margin-left: -100px;
+    position: relative;
+    left: 100px;
 }

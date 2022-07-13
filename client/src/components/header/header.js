@@ -4,6 +4,11 @@ import { Outlet, Link } from 'react-router-dom'
 import logo from '../../img/logo.png'
 
 export default function Header() {
+    function handleLogout() {
+        localStorage.removeItem("token");
+        window.location.replace("/login");
+    }
+
     return (
         <div>
             <header className="header">
@@ -15,6 +20,9 @@ export default function Header() {
                         </li>
                         <li>
                             <Link className="header-link" to="/closet">Closet</Link>
+                        </li>
+                        <li>
+                            <Link className="header-link" to="/" onClick={handleLogout}>Logout</Link>
                         </li>
                     </ul>
                 </nav>

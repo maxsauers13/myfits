@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from 'react'
 import Card from '../card/card'
 import './homeStyles.scss'
 import questionMark from '../../img/questionmark.jpg'
+import logoIcon from '../../img/logoIcon.png'
 import ClothesContext from '../../context/clothes-context'
 
 export default function Home() {
@@ -30,10 +31,10 @@ export default function Home() {
                     Create A Fit!
                 </div>
                 <div className="padding">
-                    <img className="clothes-img shirt-img" src={clothesCtx.topFitImage ? clothesCtx.topFitImage : questionMark} alt="Shirt"></img>
+                    <img className="clothes-img shirt-img" src={clothesCtx.topFitImage ? clothesCtx.topFitImage : logoIcon} alt="Shirt"></img>
                 </div>
                 <div className="padding">
-                    <img className="clothes-img pants-img" src={clothesCtx.bottomFitImage ? clothesCtx.bottomFitImage : questionMark} alt="Pants"></img>
+                    <img className="clothes-img pants-img" src={clothesCtx.bottomFitImage ? clothesCtx.bottomFitImage : logoIcon} alt="Pants"></img>
                 </div>
                 <div className="padding">
                     <button className="fit-button" onClick={handleGenerateRandomFit}>Fit</button>
