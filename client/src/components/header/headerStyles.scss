@@ -7,7 +7,8 @@
     align-items: center;
     justify-content: space-between;
     background-color: $clr-white;
-    box-shadow: 5px 5px 5px $clr-black;
+    box-shadow: 3px 3px 16px $clr-black;
+    z-index: 1;
 }
 
 .header-logo {

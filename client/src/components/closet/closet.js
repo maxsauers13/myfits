@@ -29,7 +29,7 @@ export default function Closet(props) {
                     {props.username}'s Closet
                 </div>
                 <div className="closet-container">
-                    <div className="closet-column">
+                    <div className="column">
                         Tops
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseTop}></img>
@@ -40,11 +40,8 @@ export default function Closet(props) {
 
                             <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseTop}></img>
                         </div>
-                        {/* <div className="img-container">
-                            <img className="closet-img rotator-img" src={clothesCtx.topClosetImage} alt="shirt"></img>
-                        </div> */}
                     </div>
-                    <div className="closet-column">
+                    <div className="column">
                         Bottoms
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseBottom}></img>

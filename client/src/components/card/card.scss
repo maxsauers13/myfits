@@ -1,11 +1,15 @@
 @import '../../styles//variables.scss';
 
 .card {
-    margin-top: 3%;
     height: 90%;
+    margin: 45px 30px;
     background-color: $clr-white;
     border-radius: 6px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     align-items: center;
     justify-content: center;
+}
+
+.card-limit-width {
+    max-width: 30%;
 }
