@@ -24,13 +24,15 @@ export default function Closet(props) {
 
     return (
         <div className="wrapper">
-            <Card>
+            <Card width="70%">
                 <div className="title">
                     {props.username}'s Closet
                 </div>
                 <div className="closet-container">
                     <div className="column">
-                        Tops
+                        <div className="closet-label">
+                            Tops:
+                        </div>
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseTop}></img>
 
@@ -40,9 +42,35 @@ export default function Closet(props) {
 
                             <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseTop}></img>
                         </div>
+                        <div className="closet-label">
+                            Bottoms:
+                        </div>
+                        <div className="img-container">
+                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseBottom}></img>
+
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.bottomClosetPrevImage} alt="pants"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.bottomClosetImage} alt="pants"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.bottomClosetNextImage} alt="pants"></img>
+
+                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseBottom}></img>
+                        </div>
                     </div>
                     <div className="column">
-                        Bottoms
+                        <div className="closet-label">
+                            Outerwear:
+                        </div>
+                        <div className="img-container">
+                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseTop}></img>
+
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.topClosetPrevImage} alt="shirt"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.topClosetImage} alt="shirt"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.topClosetNextImage} alt="shirt"></img>
+
+                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseTop}></img>
+                        </div>
+                        <div className="closet-label">
+                            Shoes:
+                        </div>
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseBottom}></img>
 
@@ -54,8 +82,39 @@ export default function Closet(props) {
                         </div>
                     </div>
                 </div>
+            </Card>
+            <Card width="20%">
+                <div className="title">
+                    Inventory
+                </div>
+                <div className="inventory-container">
+                    <div className="inventory-counter">
+                        Tops: {clothesCtx.maxTopIndex} Item(s)
+                    </div>
+                    <div className="inventory-counter">
+                        Bottoms: {clothesCtx.maxBottomIndex} Item(s)
+                    </div>
+                    <div className="inventory-counter">
+                        Outerwear: {clothesCtx.maxTopIndex} Item(s)
+                    </div>
+                    <div className="inventory-counter">
+                        Shoes: {clothesCtx.maxBottomIndex} Item(s)
+                    </div>
+                    <div className="inventory-counter">
+                        Casual: {clothesCtx.maxTopIndex} Item(s)
+                    </div>
+                    <div className="inventory-counter">
+                        Professional: {clothesCtx.maxBottomIndex} Item(s)
+                    </div>
+                    <div className="inventory-counter">
+                        Warm: {clothesCtx.maxTopIndex} Item(s)
+                    </div>
+                    <div className="inventory-counter">
+                        Cold: {clothesCtx.maxBottomIndex} Item(s)
+                    </div>
+                </div>
                 <div className="add-wrapper">
-                    <Link className="add-button" to="/closet/add">Add to Closet</Link>
+                    <Link className="button" to="/closet/add">Add to Closet</Link>
                 </div>
             </Card>
         </div>

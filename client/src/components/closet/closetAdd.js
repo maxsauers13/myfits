@@ -4,7 +4,7 @@ import Card from '../card/card'
 import './closetStyles.scss'
 
 export default function ClosetAdd() {
-    const [file, setfile] = useState();
+    const [file, setFile] = useState();
     const [fileName, setFileName] = useState("");
     const [category, setCategory] = useState("shirt");
     const [style, setStyle] = useState("casual");
@@ -30,7 +30,7 @@ export default function ClosetAdd() {
 
     return (
         <div className="wrapper">
-            <Card>
+            <Card >
                 <div className="title">
                     Add to Closet
                 </div>
@@ -38,13 +38,13 @@ export default function ClosetAdd() {
                     <div className="form-input">
                         <label>Submit file:</label><br></br>
                         <input type="file" onChange={(e) => {
-                            setfile(e.target.files[0])
+                            setFile(e.target.files[0])
                             setFileName(e.target.files[0].name)
                         }} />
                     </div>
                     <div className="form-input">
                         <label>Select Category:</label><br></br>
-                        <select value={category} onChange={(e) => {
+                        <select className="select" value={category} onChange={(e) => {
                             setCategory(e.target.value)
                         }}>
                             <option value="shirt">Shirt</option>
@@ -53,14 +53,14 @@ export default function ClosetAdd() {
                     </div>
                     <div className="form-input">
                         <label>Select Style:</label><br></br>
-                        <select value={style} onChange={(e) => {
+                        <select className="select" value={style} onChange={(e) => {
                             setStyle(e.target.value)
                         }}>
                             <option value="casual">Casual</option>
                             <option value="professional">Professional</option>
                         </select>
                     </div>
-                    <button onClick={closetAdd}>Submit</button>
+                    <button className="button" onClick={closetAdd}>Submit</button>
                 </div>
             </Card>
         </div>

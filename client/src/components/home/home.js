@@ -1,7 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import Card from '../card/card'
 import './homeStyles.scss'
-import questionMark from '../../img/questionmark.jpg'
 import logoIcon from '../../img/logoIcon.png'
 import ClothesContext from '../../context/clothes-context'
 
@@ -29,7 +28,7 @@ export default function Home() {
             <Card width="25%">
                 <div className="home-container">
                     <div className="column">
-                        <img src={logoIcon}></img>
+                        <img src={logoIcon} alt="MyFits"></img>
                         <p>
                             Welcome to MyFits! This is an application that allows you to create outfits right out of your closet. <br /><br />
                             1. Submit photos of your clothing items to your Closet.<br />
@@ -74,7 +73,7 @@ export default function Home() {
                     <div className="column">
                         <div className="clothes-container">
                             <div className="label">
-                                Category:
+                                Style:
                             </div>
                             <select className="select">
                                 <option value="Any">Any</option>
@@ -114,7 +113,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="clothes-container">
-                            <button className="fit-button" onClick={handleGenerateRandomFit}>Create Fit</button>
+                            <button className="button" onClick={handleGenerateRandomFit}>Create Fit</button>
                         </div>
                     </div>
                 </div>
@@ -122,5 +121,3 @@ export default function Home() {
         </div>
     )
 }
-
-// create multi-check list to toggle on/off a type of clothing

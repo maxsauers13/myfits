@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Axios from 'axios'
 import Card from '../card/card'
+import logo from '../../img/logo.png'
+import './loginStyles.scss'
 
 export default function Login() {
     const [usernameRegister, setUsernameRegister] = useState("");
@@ -32,49 +34,66 @@ export default function Login() {
     }
 
     return (
-        <div className="wrapper">
-            <Card>
-                <div className="title">
-                    Login
+        <div>
+            <header className="header">
+                <img className="header-logo" src={logo} alt="MyFits"></img>
+            </header>
+            <div className="wrapper">
+                <div>
+                    <Card>
+                        <div className="title">
+                            Login
+                    </div>
+                        <div className="form">
+                            <div className="login-input">
+                                <label>Username: </label>
+                                <input
+                                    type="text"
+                                    onChange={(e) => {
+                                        setUsername(e.target.value)
+                                    }}
+                                />
+                            </div>
+                            <div className="login-input">
+                                <label>Password: </label>
+                                <input
+                                    type="password"
+                                    onChange={(e) => {
+                                        setPassword(e.target.value)
+                                    }}
+                                />
+                            </div>
+                            <button className="button" onClick={login}>Login</button>
+                        </div>
+                    </Card>
+                    <Card>
+                        <div className="title">
+                            Register
+                    </div>
+                        <div className="form">
+                            <div className="login-input">
+                                <label>Username: </label>
+                                <input
+                                    type="text"
+                                    onChange={(e) => {
+                                        setUsernameRegister(e.target.value)
+                                    }}
+                                />
+                            </div>
+                            <div className="login-input">
+                                <label>Password: </label>
+                                <input
+                                    type="password"
+                                    onChange={(e) => {
+                                        setPasswordRegister(e.target.value)
+                                    }}
+                                />
+                            </div>
+                            <button className="button" onClick={register}>Register</button>
+                        </div>
+                    </Card>
                 </div>
-                <label>Username</label>
-                <input
-                    type="text"
-                    onChange={(e) => {
-                        setUsername(e.target.value)
-                    }}
-                />
-                <br></br>
-                <label>Password</label>
-                <input
-                    type="password"
-                    onChange={(e) => {
-                        setPassword(e.target.value)
-                    }}
-                />
-                <br></br>
-                <button onClick={login}>Login</button>
-                <div className="title">
-                    Register
-                </div>
-                <label>Username</label>
-                <input
-                    type="text"
-                    onChange={(e) => {
-                        setUsernameRegister(e.target.value)
-                    }}
-                />
-                <br></br>
-                <label>Password</label>
-                <input
-                    type="password"
-                    onChange={(e) => {
-                        setPasswordRegister(e.target.value)
-                    }}
-                />
-                <br></br>
-                <button onClick={register}>Register</button>
-            </Card>
+            </div>
         </div>
     )
 }

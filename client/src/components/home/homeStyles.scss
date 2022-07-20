@@ -29,41 +29,9 @@ body {
     font-size: 24px;
 }
 
-.fit-button {
-    font: inherit;
-    font-size: 22px;
-    background-color: $clr-blue;
-    // border-color: $clr-black;
-    border: 2px solid $clr-black;
-    color: $clr-white;
-    border-radius: 5px;
-    padding: .5em;
-    // height: 50px;
-    // width: 150px;
-}
-
-.fit-button:hover {
-    color: $clr-black;
-}
-
 .label {
     text-align: left;
     font-size: 18px;
-}
-
-.select {
-    // appearance: none;
-    outline: none;
-    display: grid;
-    grid-template-areas: "select";
-    width: 100%;
-    font-family: inherit;
-    font-size: 20px;
-    border: 1px solid $clr-black;
-    border-radius: 0.25em;
-    padding: 0.25em 0.5em;
-    background-color: #fff;
-    align-items: center;
 }
 
 .checkbox {

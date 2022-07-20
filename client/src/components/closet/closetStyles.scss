@@ -2,16 +2,20 @@
 
 .closet-container {
     display: flex;
-    padding: 40px;
+    padding: 10px 40px 40px 40px;
 }
 
 .closet-img {
-    height: 250px;
-    width: 250px;
+    height: 200px;
+    width: 200px;
     border-radius: 10px;
     box-shadow: 5px;
-    margin-top: 50px;
     z-index: 1;
+}
+
+.closet-label {
+    font-size: 24px;
+    padding: 25px 0px 10px 0px;
 }
 
 .img-container {
@@ -19,52 +23,50 @@
 }
 
 .closet-icon {
-    margin-top: 20%;
+    margin-top: 70px;
     height: 30px;
     padding: 20px;
 }
 
 .add-wrapper {
-    margin-top: 80px;
-    padding: 20px;
-}
-
-.add-button {
-    text-decoration: none;
-    font-size: 24px;
-    padding: .5em;
-    border-radius: 5px;
-    border: 2px solid $clr-black;
-    color: $clr-white;
-    background-color: $clr-blue;
-}
-
-.add-button:hover {
-    color: $clr-black;
-}
-
-.form {
     padding: 40px;
 }
 
+.form {
+    padding: 40px 80px;
+    font-size: 20px;
+    color: $clr-blue;
+}
+
 .form-input {
-    margin-bottom: 2rem;
+    text-align: left;
+    margin-bottom: 50px;
 }
 
 .rotator-next-img {
-    height: 200px;
+    height: 150px;
     border-radius: 10px;
-    margin-top: 75px;
+    margin-top: 25px;
     margin-right: -100px;
     position: relative;
     right: 100px;
 }
 
 .rotator-prev-img {
-    height: 200px;
+    height: 150px;
     border-radius: 10px;
-    margin-top: 75px;
+    margin-top: 25px;
     margin-left: -100px;
     position: relative;
     left: 100px;
+}
+
+.inventory-container {
+    padding: 20px 0px 0px 0px;
+}
+
+.inventory-counter {
+    padding: 10px;
+    font-size: 20px;
+    color: $clr-blue;
 }
