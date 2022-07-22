@@ -26,7 +26,12 @@ const ClothesContext = createContext({
     outerIndex: 0,
     shoesIndex: 0,
     maxOuterIndex: 0,
-    maxShoesIndex: 0
+    maxShoesIndex: 0,
+
+    casualCount: 0,
+    professionalCount: 0,
+    warmCount: 0,
+    coldCount: 0
 });
 
 export function ClothesContextProvider(props) {
@@ -56,6 +61,11 @@ export function ClothesContextProvider(props) {
     const [maxOuterIndex, setMaxOuterIndex] = useState();
     const [maxShoesIndex, setMaxShoesIndex] = useState();
 
+    const [casualCount, setCasualCount] = useState();
+    const [professionalCount, setProfessionalCount] = useState();
+    const [warmCount, setWarmCount] = useState();
+    const [coldCount, setColdCount] = useState();
+
     function generateRandomFit(maxIndex, category, setImage) {
         Axios.post('http://localhost:3001/fit', {
             maxIndex: maxIndex,
@@ -67,12 +77,11 @@ export function ClothesContextProvider(props) {
         })
     }
 
-    function getClothesCount(category, setMaxIndex) {
-        Axios.post('http://localhost:3001/clothesCount', {
+    function getInventoryCount(input, setMaxIndex) {
+        Axios.post('http://localhost:3001/inventoryCount', {
             owner: localStorage.getItem('token'),
-            category: category
+            input: input
         }).then((response) => {
-            console.log("max: " + response.data[0].totalItems);
             setMaxIndex(response.data[0].totalItems);
         })
     }
@@ -81,7 +90,6 @@ export function ClothesContextProvider(props) {
         const nextIndex = (index + 1) % (maxIndex + 1) ? (index + 1) % (maxIndex + 1) : (index + 1) % (maxIndex + 1) + 1;
         const prevIndex = (index - 1) ? (index - 1) : maxIndex;
 
-        console.log("index: " + index + " next: " + nextIndex + " prev: " + prevIndex);
         Axios.post('http://localhost:3001/clothes', {
             index: index,
             owner: localStorage.getItem('token'),
@@ -199,6 +207,10 @@ export function ClothesContextProvider(props) {
         shoesIndex: shoesIndex,
         maxOuterIndex: maxOuterIndex,
         maxShoesIndex: maxShoesIndex,
+        casualCount: casualCount,
+        professionalCount: professionalCount,
+        warmCount: warmCount,
+        coldCount: coldCount,
 
         setTopFitImage: setTopFitImage,
         setBottomFitImage: setBottomFitImage,
@@ -224,9 +236,13 @@ export function ClothesContextProvider(props) {
         setShoesIndex: setShoesIndex,
         setMaxOuterIndex: setMaxOuterIndex,
         setMaxShoesIndex: setMaxShoesIndex,
+        setCasualCount: setCasualCount,
+        setProfessionalCount: setProfessionalCount,
+        setWarmCount: setWarmCount,
+        setColdCount: setColdCount,
 
         generateRandomFit: generateRandomFit,
-        getClothesCount: getClothesCount,
+        getInventoryCount: getInventoryCount,
         getClosetClothing: getClosetClothing,
         handleDecreaseTop: handleDecreaseTop,
         handleIncreaseTop: handleIncreaseTop,

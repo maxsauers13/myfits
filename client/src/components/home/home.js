@@ -9,14 +9,18 @@ export default function Home() {
     var loading = 15;
 
     useEffect(() => {
-        clothesCtx.getClothesCount("shirt", clothesCtx.setMaxTopIndex);
-        clothesCtx.getClothesCount("pants", clothesCtx.setMaxBottomIndex);
+        clothesCtx.getInventoryCount("shirt", clothesCtx.setMaxTopIndex);
+        clothesCtx.getInventoryCount("pants", clothesCtx.setMaxBottomIndex);
+        clothesCtx.getInventoryCount("outerwear", clothesCtx.setMaxOuterIndex);
+        clothesCtx.getInventoryCount("shoes", clothesCtx.setMaxShoesIndex);
     }, [clothesCtx])
 
     function handleGenerateRandomFit() {
         setTimeout(() => {
             clothesCtx.generateRandomFit(clothesCtx.maxTopIndex, "shirt", clothesCtx.setTopFitImage);
             clothesCtx.generateRandomFit(clothesCtx.maxBottomIndex, "pants", clothesCtx.setBottomFitImage);
+            clothesCtx.generateRandomFit(clothesCtx.maxOuterIndex, "outerwear", clothesCtx.setOuterFitImage);
+            clothesCtx.generateRandomFit(clothesCtx.maxShoesIndex, "shoes", clothesCtx.setShoesFitImage);
             if (--loading) {
                 handleGenerateRandomFit(loading);
             }
@@ -57,11 +61,11 @@ export default function Home() {
                     <div className="column">
                         <div className="clothes-container">
                             Outerwear:
-                            <img className="clothes-img shirt-img" src={clothesCtx.topFitImage ? clothesCtx.topFitImage : logoIcon} alt="Shirt"></img>
+                            <img className="clothes-img shirt-img" src={clothesCtx.outerFitImage ? clothesCtx.outerFitImage : logoIcon} alt="Outerwear"></img>
                         </div>
                         <div className="clothes-container">
                             Shoes:
-                            <img className="clothes-img pants-img" src={clothesCtx.bottomFitImage ? clothesCtx.bottomFitImage : logoIcon} alt="Pants"></img>
+                            <img className="clothes-img pants-img" src={clothesCtx.shoesFitImage ? clothesCtx.shoesFitImage : logoIcon} alt="Shoes"></img>
                         </div>
                     </div>
                 </div>

@@ -10,10 +10,14 @@ export default function Closet(props) {
     const clothesCtx = useContext(ClothesContext);
 
     useEffect(() => {
-        clothesCtx.getClothesCount("shirt", clothesCtx.setMaxTopIndex);
-        clothesCtx.getClothesCount("pants", clothesCtx.setMaxBottomIndex);
-        clothesCtx.getClothesCount("outerwear", clothesCtx.setMaxOuterIndex);
-        clothesCtx.getClothesCount("shoes", clothesCtx.setMaxShoesIndex);
+        clothesCtx.getInventoryCount("shirt", clothesCtx.setMaxTopIndex);
+        clothesCtx.getInventoryCount("pants", clothesCtx.setMaxBottomIndex);
+        clothesCtx.getInventoryCount("outerwear", clothesCtx.setMaxOuterIndex);
+        clothesCtx.getInventoryCount("shoes", clothesCtx.setMaxShoesIndex);
+        clothesCtx.getInventoryCount("casual", clothesCtx.setCasualCount);
+        clothesCtx.getInventoryCount("professional", clothesCtx.setProfessionalCount);
+        clothesCtx.getInventoryCount("warm", clothesCtx.setWarmCount);
+        clothesCtx.getInventoryCount("cold", clothesCtx.setColdCount);
     }, [clothesCtx])
 
     useEffect(() => {
@@ -111,16 +115,16 @@ export default function Closet(props) {
                         Shoes: {clothesCtx.maxShoesIndex} Item(s)
                     </div>
                     <div className="inventory-counter">
-                        Casual: {clothesCtx.maxTopIndex} Item(s)
+                        Casual: {clothesCtx.casualCount} Item(s)
                     </div>
                     <div className="inventory-counter">
-                        Professional: {clothesCtx.maxBottomIndex} Item(s)
+                        Professional: {clothesCtx.professionalCount} Item(s)
                     </div>
                     <div className="inventory-counter">
-                        Warm: {clothesCtx.maxTopIndex} Item(s)
+                        Warm: {clothesCtx.warmCount} Item(s)
                     </div>
                     <div className="inventory-counter">
-                        Cold: {clothesCtx.maxBottomIndex} Item(s)
+                        Cold: {clothesCtx.coldCount} Item(s)
                     </div>
                 </div>
                 <div className="add-wrapper">

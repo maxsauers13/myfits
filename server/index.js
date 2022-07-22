@@ -103,12 +103,22 @@ app.post('/clothes', (req, res) => {
         })
 })
 
-app.post('/clothesCount', (req, res) => {
+app.post('/inventoryCount', (req, res) => {
     const owner = req.body.owner;
-    const category = req.body.category;
+    const input = req.body.input;
+    var countType = "";
 
-    db.query("SELECT COUNT(*) AS totalItems FROM Clothes WHERE (owner = ? AND category = ?)",
-        [owner, category],
+    if (input == "shirt" || input == "pants" || input == "outerwear" || input == "shoes") {
+        countType = "category";
+    } else if (input == "casual" || input == "professional") {
+        countType = "style";
+    } else if (input == "warm" || input == "cold") {
+        countType = "weather";
+    }
+
+    const query = "SELECT COUNT(*) AS totalItems FROM Clothes WHERE (owner = '" + owner + "' AND (" + countType + " = '" + input + "' OR " + countType + " = 'any'))";
+    db.query(query,
+        [],
         (err, result) => {
             if (err) {
                 res.send({ err: err });
