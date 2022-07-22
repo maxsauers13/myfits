@@ -32,8 +32,9 @@ export default function Home() {
                         <p>
                             Welcome to MyFits! This is an application that allows you to create outfits right out of your closet. <br /><br />
                             1. Submit photos of your clothing items to your Closet.<br />
-                            2. Apply as many filters to your Fit as you'd like.<br />
-                            3. Press the "Fit!" button to generate your optimal outfit!
+                            2. View your clothes in the Closet tab.<br />
+                            3. Apply as many filters to your Fit as you'd like.<br />
+                            4. Press the "Fit!" button to generate your optimal outfit!
                         </p>
                     </div>
                 </div>

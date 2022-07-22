@@ -12,6 +12,8 @@ export default function Closet(props) {
     useEffect(() => {
         clothesCtx.getClothesCount("shirt", clothesCtx.setMaxTopIndex);
         clothesCtx.getClothesCount("pants", clothesCtx.setMaxBottomIndex);
+        clothesCtx.getClothesCount("outerwear", clothesCtx.setMaxOuterIndex);
+        clothesCtx.getClothesCount("shoes", clothesCtx.setMaxShoesIndex);
     }, [clothesCtx])
 
     useEffect(() => {
@@ -21,6 +23,14 @@ export default function Closet(props) {
     useEffect(() => {
         clothesCtx.getClosetClothing(clothesCtx.bottomIndex, clothesCtx.maxBottomIndex, "pants", clothesCtx.setBottomClosetImage, clothesCtx.setBottomClosetNextImage, clothesCtx.setBottomClosetPrevImage);
     }, [clothesCtx, clothesCtx.bottomIndex])
+
+    useEffect(() => {
+        clothesCtx.getClosetClothing(clothesCtx.outerIndex, clothesCtx.maxOuterIndex, "outerwear", clothesCtx.setOuterClosetImage, clothesCtx.setOuterClosetNextImage, clothesCtx.setOuterClosetPrevImage);
+    }, [clothesCtx, clothesCtx.outerIndex])
+
+    useEffect(() => {
+        clothesCtx.getClosetClothing(clothesCtx.shoesIndex, clothesCtx.maxShoesIndex, "shoes", clothesCtx.setShoesClosetImage, clothesCtx.setShoesClosetNextImage, clothesCtx.setShoesClosetPrevImage);
+    }, [clothesCtx, clothesCtx.shoesIndex])
 
     return (
         <div className="wrapper">
@@ -60,25 +70,25 @@ export default function Closet(props) {
                             Outerwear:
                         </div>
                         <div className="img-container">
-                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseTop}></img>
+                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseOuter}></img>
 
-                            <img className="clothes-img rotator-prev-img" src={clothesCtx.topClosetPrevImage} alt="shirt"></img>
-                            <img className="clothes-img closet-img" src={clothesCtx.topClosetImage} alt="shirt"></img>
-                            <img className="clothes-img rotator-next-img" src={clothesCtx.topClosetNextImage} alt="shirt"></img>
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.outerClosetPrevImage} alt="outerwear"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.outerClosetImage} alt="outerwear"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.outerClosetNextImage} alt="outerwear"></img>
 
-                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseTop}></img>
+                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseOuter}></img>
                         </div>
                         <div className="closet-label">
                             Shoes:
                         </div>
                         <div className="img-container">
-                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseBottom}></img>
+                            <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseShoes}></img>
 
-                            <img className="clothes-img rotator-prev-img" src={clothesCtx.bottomClosetPrevImage} alt="pants"></img>
-                            <img className="clothes-img closet-img" src={clothesCtx.bottomClosetImage} alt="pants"></img>
-                            <img className="clothes-img rotator-next-img" src={clothesCtx.bottomClosetNextImage} alt="pants"></img>
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.shoesClosetPrevImage} alt="shoes"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.shoesClosetImage} alt="shoes"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.shoesClosetNextImage} alt="shoes"></img>
 
-                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseBottom}></img>
+                            <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseShoes}></img>
                         </div>
                     </div>
                 </div>
@@ -95,10 +105,10 @@ export default function Closet(props) {
                         Bottoms: {clothesCtx.maxBottomIndex} Item(s)
                     </div>
                     <div className="inventory-counter">
-                        Outerwear: {clothesCtx.maxTopIndex} Item(s)
+                        Outerwear: {clothesCtx.maxOuterIndex} Item(s)
                     </div>
                     <div className="inventory-counter">
-                        Shoes: {clothesCtx.maxBottomIndex} Item(s)
+                        Shoes: {clothesCtx.maxShoesIndex} Item(s)
                     </div>
                     <div className="inventory-counter">
                         Casual: {clothesCtx.maxTopIndex} Item(s)

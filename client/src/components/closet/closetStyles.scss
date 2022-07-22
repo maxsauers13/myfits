@@ -70,3 +70,17 @@
     font-size: 20px;
     color: $clr-blue;
 }
+
+.submit-image {
+    outline: none;
+    display: grid;
+    grid-template-areas: "select";
+    width: 92%;
+    font-family: inherit;
+    font-size: 20px;
+    border: 1px solid $clr-black;
+    border-radius: 0.25em;
+    padding: 0.5em 0.5em;
+    background-color: #fff;
+    align-items: center;
+}

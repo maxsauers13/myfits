@@ -13,7 +13,20 @@ const ClothesContext = createContext({
     topIndex: 0,
     bottomIndex: 0,
     maxTopIndex: 0,
-    maxBottomIndex: 0
+    maxBottomIndex: 0,
+
+    outerFitImage: "",
+    shoesFitImage: "",
+    outerClosetImage: "",
+    shoesClosetImage: "",
+    outerClosetNextImage: "",
+    outerClosetPrevImage: "",
+    shoesClosetNextImage: "",
+    shoesClosetPrevImage: "",
+    outerIndex: 0,
+    shoesIndex: 0,
+    maxOuterIndex: 0,
+    maxShoesIndex: 0
 });
 
 export function ClothesContextProvider(props) {
@@ -29,6 +42,19 @@ export function ClothesContextProvider(props) {
     const [bottomIndex, setBottomIndex] = useState(1);
     const [maxTopIndex, setMaxTopIndex] = useState();
     const [maxBottomIndex, setMaxBottomIndex] = useState();
+
+    const [outerFitImage, setOuterFitImage] = useState();
+    const [shoesFitImage, setShoesFitImage] = useState();
+    const [outerClosetImage, setOuterClosetImage] = useState();
+    const [shoesClosetImage, setShoesClosetImage] = useState();
+    const [outerClosetNextImage, setOuterClosetNextImage] = useState();
+    const [outerClosetPrevImage, setOuterClosetPrevImage] = useState();
+    const [shoesClosetNextImage, setShoesClosetNextImage] = useState();
+    const [shoesClosetPrevImage, setShoesClosetPrevImage] = useState();
+    const [outerIndex, setOuterIndex] = useState(1);
+    const [shoesIndex, setShoesIndex] = useState(1);
+    const [maxOuterIndex, setMaxOuterIndex] = useState();
+    const [maxShoesIndex, setMaxShoesIndex] = useState();
 
     function generateRandomFit(maxIndex, category, setImage) {
         Axios.post('http://localhost:3001/fit', {
@@ -116,6 +142,38 @@ export function ClothesContextProvider(props) {
         }
     }
 
+    function handleDecreaseOuter() {
+        if (outerIndex > 1) {
+            setOuterIndex(outerIndex - 1);
+        } else {
+            setOuterIndex(maxOuterIndex);
+        }
+    }
+
+    function handleIncreaseOuter() {
+        if (outerIndex < maxOuterIndex) {
+            setOuterIndex(outerIndex + 1);
+        } else {
+            setOuterIndex(1);
+        }
+    }
+
+    function handleDecreaseShoes() {
+        if (shoesIndex > 1) {
+            setShoesIndex(shoesIndex - 1);
+        } else {
+            setShoesIndex(maxShoesIndex);
+        }
+    }
+
+    function handleIncreaseShoes() {
+        if (shoesIndex < maxShoesIndex) {
+            setShoesIndex(shoesIndex + 1);
+        } else {
+            setShoesIndex(1);
+        }
+    }
+
     const context = {
         topFitImage: topFitImage,
         bottomFitImage: bottomFitImage,
@@ -129,6 +187,18 @@ export function ClothesContextProvider(props) {
         bottomIndex: bottomIndex,
         maxTopIndex: maxTopIndex,
         maxBottomIndex: maxBottomIndex,
+        outerFitImage: outerFitImage,
+        shoesFitImage: shoesFitImage,
+        outerClosetImage: outerClosetImage,
+        shoesClosetImage: shoesClosetImage,
+        outerClosetNextImage: outerClosetNextImage,
+        outerClosetPrevImage: outerClosetPrevImage,
+        shoesClosetNextImage: shoesClosetNextImage,
+        shoesClosetPrevImage: shoesClosetPrevImage,
+        outerIndex: outerIndex,
+        shoesIndex: shoesIndex,
+        maxOuterIndex: maxOuterIndex,
+        maxShoesIndex: maxShoesIndex,
 
         setTopFitImage: setTopFitImage,
         setBottomFitImage: setBottomFitImage,
@@ -142,6 +212,18 @@ export function ClothesContextProvider(props) {
         setBottomIndex: setBottomIndex,
         setMaxTopIndex: setMaxTopIndex,
         setMaxBottomIndex: setMaxBottomIndex,
+        setOuterFitImage: setOuterFitImage,
+        setShoesFitImage: setShoesFitImage,
+        setOuterClosetImage: setOuterClosetImage,
+        setShoesClosetImage: setShoesClosetImage,
+        setOuterClosetNextImage: setOuterClosetNextImage,
+        setOuterClosetPrevImage: setOuterClosetPrevImage,
+        setShoesClosetNextImage: setShoesClosetNextImage,
+        setShoesClosetPrevImage: setShoesClosetPrevImage,
+        setOuterIndex: setOuterIndex,
+        setShoesIndex: setShoesIndex,
+        setMaxOuterIndex: setMaxOuterIndex,
+        setMaxShoesIndex: setMaxShoesIndex,
 
         generateRandomFit: generateRandomFit,
         getClothesCount: getClothesCount,
@@ -149,7 +231,11 @@ export function ClothesContextProvider(props) {
         handleDecreaseTop: handleDecreaseTop,
         handleIncreaseTop: handleIncreaseTop,
         handleDecreaseBottom: handleDecreaseBottom,
-        handleIncreaseBottom: handleIncreaseBottom
+        handleIncreaseBottom: handleIncreaseBottom,
+        handleDecreaseOuter: handleDecreaseOuter,
+        handleIncreaseOuter: handleIncreaseOuter,
+        handleDecreaseShoes: handleDecreaseShoes,
+        handleIncreaseShoes: handleIncreaseShoes
     }
 
     return (

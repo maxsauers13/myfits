@@ -73,9 +73,10 @@ app.post("/closetAdd", upload.single('file'), (req, res) => {
         const owner = req.body.owner;
         const category = req.body.category;
         const style = req.body.style;
+        const weather = req.body.weather;
 
-        var insertData = "INSERT INTO Clothes (image, owner, category, style) VALUES (?, ?, ?, ?)";
-        db.query(insertData, [imgsrc, owner, category, style], (err, result) => {
+        var insertData = "INSERT INTO Clothes (image, owner, category, style, weather) VALUES (?, ?, ?, ?, ?)";
+        db.query(insertData, [imgsrc, owner, category, style, weather], (err, result) => {
             if (err) {
                 console.log("error: " + err);
             } else {
