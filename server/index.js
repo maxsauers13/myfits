@@ -103,22 +103,6 @@ app.post('/clothes', (req, res) => {
         })
 })
 
-app.post('/allClothes', (req, res) => {
-    const owner = req.body.owner;
-    const category = req.body.category;
-
-    db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE (owner = ? AND category = ?) ORDER BY id) AS clothes",
-        [owner, category],
-        (err, result) => {
-            if (err) {
-                res.send({ err: err });
-            }
-            else {
-                res.send(result);
-            }
-        })
-})
-
 app.post('/inventoryCount', (req, res) => {
     const owner = req.body.owner;
     const input = req.body.input;
