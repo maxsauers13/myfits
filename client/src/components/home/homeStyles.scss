@@ -14,18 +14,22 @@ body {
     color: $clr-black;
 }
 
-.shirt-img {
+.home-img {
     height: 200px;
+    width: 200px;
     border-radius: 10px;
+    padding: 10px;
 }
 
-.pants-img {
-    height: 200px;
+.question-img {
+    height: 150px;
+    width: 150px;
     border-radius: 10px;
+    padding: 25px;
 }
 
 .clothes-container {
-    padding: 20px;
+    padding: 12px 20px;
     font-size: 24px;
 }
 

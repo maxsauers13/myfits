@@ -1,6 +1,6 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import Axios from 'axios';
-import logoIcon from '../img/logoIcon.png';
+import question from '../img/question.png';
 
 const ClothesContext = createContext({
     topFitImage: "",
@@ -32,9 +32,7 @@ const ClothesContext = createContext({
     casualCount: 0,
     professionalCount: 0,
     warmCount: 0,
-    coldCount: 0,
-
-    topCache: {}
+    coldCount: 0
 });
 
 export function ClothesContextProvider(props) {
@@ -46,7 +44,7 @@ export function ClothesContextProvider(props) {
     const [topClosetPrevImage, setTopClosetPrevImage] = useState();
     const [bottomClosetNextImage, setBottomClosetNextImage] = useState();
     const [bottomClosetPrevImage, setBottomClosetPrevImage] = useState();
-    const [topIndex, setTopIndex] = useState(0);
+    const [topIndex, setTopIndex] = useState(1);
     const [bottomIndex, setBottomIndex] = useState(1);
     const [maxTopIndex, setMaxTopIndex] = useState();
     const [maxBottomIndex, setMaxBottomIndex] = useState();
@@ -76,8 +74,6 @@ export function ClothesContextProvider(props) {
     const [outerToggle, setOuterToggle] = useState(false);
     const [shoesToggle, setShoesToggle] = useState(false);
 
-    const [topCache, setTopCache] = useState({});
-
     function generateFit(category, style, weather, setImage) {
         Axios.post('http://localhost:3001/fit', {
             owner: localStorage.getItem('token'),
@@ -90,7 +86,7 @@ export function ClothesContextProvider(props) {
                 const imageURL = response.data[index].image;
                 setImage(imageURL);
             } else {
-                setImage(logoIcon);
+                setImage(question);
             }
         })
     }
@@ -111,11 +107,7 @@ export function ClothesContextProvider(props) {
             owner: localStorage.getItem('token'),
             input: input
         }).then((response) => {
-            if (input == "shirt") {
-                setMaxIndex(response.data[0].totalItems - 1);
-            } else {
-                setMaxIndex(response.data[0].totalItems);
-            }
+            setMaxIndex(response.data[0].totalItems);
         })
     }
 
@@ -153,74 +145,26 @@ export function ClothesContextProvider(props) {
         }
     }
 
-    function cacheClothing(index, maxIndex, category, setImage, setNextImage, setPrevImage) {
-        if (maxIndex) {
-            const nextIndex = (index + 1) % (maxIndex + 1) ? (index + 1) % (maxIndex + 1) : (index + 1) % (maxIndex + 1) + 1;
-            const prevIndex = index ? (index - 1) : maxIndex;
-
-            Axios.post('http://localhost:3001/allClothes', {
-                owner: localStorage.getItem('token'),
-                category: category
-            }).then((response) => {
-                setTopCache(response.data);
-
-                const imageURL = response.data[0].image;
-                const nextImageURL = response.data[nextIndex].image;
-                const prevImageURL = response.data[prevIndex].image;
-                setImage(imageURL);
-                setNextImage(nextImageURL);
-                setPrevImage(prevImageURL);
-            })
-        }
-    }
-
     function handleDecreaseTop() {
-        var prevIndex;
-        if (topIndex > 0) {
+        setTopClosetPrevImage();
+        if (topIndex > 1) {
             setTopIndex(topIndex - 1);
-            if (topIndex - 1 > 0) {
-                prevIndex = topIndex - 2;
-            } else {
-                prevIndex = maxTopIndex;
-            }
         } else {
             setTopIndex(maxTopIndex);
-            if (maxTopIndex) {
-                prevIndex = maxTopIndex - 1;
-            } else {
-                prevIndex = 0;
-            }
         }
-
-        setTopClosetNextImage(topClosetImage);
-        setTopClosetImage(topClosetPrevImage);
-        setTopClosetPrevImage(topCache[prevIndex].image);
     }
 
     function handleIncreaseTop() {
-        var nextIndex;
+        setTopClosetNextImage();
         if (topIndex < maxTopIndex) {
             setTopIndex(topIndex + 1);
-            if (topIndex + 1 < maxTopIndex) {
-                nextIndex = topIndex + 2;
-            } else {
-                nextIndex = 0;
-            }
         } else {
-            setTopIndex(0);
-            if (maxTopIndex) {
-                nextIndex = 1;
-            } else {
-                nextIndex = 0;
-            }
+            setTopIndex(1);
         }
-
-        setTopClosetNextImage(topCache[nextIndex].image);
-        setTopClosetPrevImage(topClosetImage);
-        setTopClosetImage(topClosetNextImage);
     }
 
     function handleDecreaseBottom() {
+        setBottomClosetPrevImage();
         if (bottomIndex > 1) {
             setBottomIndex(bottomIndex - 1);
         } else {
@@ -229,6 +173,7 @@ export function ClothesContextProvider(props) {
     }
 
     function handleIncreaseBottom() {
+        setBottomClosetNextImage();
         if (bottomIndex < maxBottomIndex) {
             setBottomIndex(bottomIndex + 1);
         } else {
@@ -237,6 +182,7 @@ export function ClothesContextProvider(props) {
     }
 
     function handleDecreaseOuter() {
+        setOuterClosetPrevImage();
         if (outerIndex > 1) {
             setOuterIndex(outerIndex - 1);
         } else {
@@ -245,6 +191,7 @@ export function ClothesContextProvider(props) {
     }
 
     function handleIncreaseOuter() {
+        setOuterClosetNextImage();
         if (outerIndex < maxOuterIndex) {
             setOuterIndex(outerIndex + 1);
         } else {
@@ -253,6 +200,7 @@ export function ClothesContextProvider(props) {
     }
 
     function handleDecreaseShoes() {
+        setShoesClosetPrevImage();
         if (shoesIndex > 1) {
             setShoesIndex(shoesIndex - 1);
         } else {
@@ -261,6 +209,7 @@ export function ClothesContextProvider(props) {
     }
 
     function handleIncreaseShoes() {
+        setShoesClosetNextImage();
         if (shoesIndex < maxShoesIndex) {
             setShoesIndex(shoesIndex + 1);
         } else {
@@ -303,7 +252,6 @@ export function ClothesContextProvider(props) {
         bottomToggle: bottomToggle,
         outerToggle: outerToggle,
         shoesToggle: shoesToggle,
-        topCache: topCache,
 
         setTopFitImage: setTopFitImage,
         setBottomFitImage: setBottomFitImage,
@@ -339,7 +287,6 @@ export function ClothesContextProvider(props) {
         setBottomToggle: setBottomToggle,
         setOuterToggle: setOuterToggle,
         setShoesToggle: setShoesToggle,
-        setTopCache: setTopCache,
 
         generateFit: generateFit,
         generateRandomFit: generateRandomFit,
@@ -352,8 +299,7 @@ export function ClothesContextProvider(props) {
         handleDecreaseOuter: handleDecreaseOuter,
         handleIncreaseOuter: handleIncreaseOuter,
         handleDecreaseShoes: handleDecreaseShoes,
-        handleIncreaseShoes: handleIncreaseShoes,
-        cacheClothing: cacheClothing
+        handleIncreaseShoes: handleIncreaseShoes
     }
 
     return (

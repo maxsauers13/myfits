@@ -4,6 +4,7 @@ import Card from '../card/card'
 import './closetStyles.scss'
 import previous from '../../img/previous.png'
 import next from '../../img/next.png'
+import loadingAnimation from '../../img/loading-animation.gif'
 import ClothesContext from '../../context/clothes-context'
 
 export default function Closet(props) {
@@ -21,10 +22,7 @@ export default function Closet(props) {
     }, [clothesCtx])
 
     useEffect(() => {
-        // console.log(clothesCtx.topCache);
-        if (!clothesCtx.topCache[0]) {
-            clothesCtx.cacheClothing(clothesCtx.topIndex, clothesCtx.maxTopIndex, "shirt", clothesCtx.setTopClosetImage, clothesCtx.setTopClosetNextImage, clothesCtx.setTopClosetPrevImage);
-        }
+        clothesCtx.getClosetClothing(clothesCtx.topIndex, clothesCtx.maxTopIndex, "shirt", clothesCtx.setTopClosetImage, clothesCtx.setTopClosetNextImage, clothesCtx.setTopClosetPrevImage);
     }, [clothesCtx, clothesCtx.topIndex])
 
     useEffect(() => {
@@ -53,9 +51,9 @@ export default function Closet(props) {
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseTop}></img>
 
-                            <img className="clothes-img rotator-prev-img" src={clothesCtx.topClosetPrevImage} alt="shirt"></img>
-                            <img className="clothes-img closet-img" src={clothesCtx.topClosetImage} alt="shirt"></img>
-                            <img className="clothes-img rotator-next-img" src={clothesCtx.topClosetNextImage} alt="shirt"></img>
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.topClosetPrevImage ? clothesCtx.topClosetPrevImage : loadingAnimation} alt="shirt"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.topClosetImage ? clothesCtx.topClosetImage : loadingAnimation} alt="shirt"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.topClosetNextImage ? clothesCtx.topClosetNextImage : loadingAnimation} alt="shirt"></img>
 
                             <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseTop}></img>
                         </div>
@@ -65,9 +63,9 @@ export default function Closet(props) {
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseBottom}></img>
 
-                            <img className="clothes-img rotator-prev-img" src={clothesCtx.bottomClosetPrevImage} alt="pants"></img>
-                            <img className="clothes-img closet-img" src={clothesCtx.bottomClosetImage} alt="pants"></img>
-                            <img className="clothes-img rotator-next-img" src={clothesCtx.bottomClosetNextImage} alt="pants"></img>
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.bottomClosetPrevImage ? clothesCtx.bottomClosetPrevImage : loadingAnimation} alt="pants"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.bottomClosetImage ? clothesCtx.bottomClosetImage : loadingAnimation} alt="pants"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.bottomClosetNextImage ? clothesCtx.bottomClosetNextImage : loadingAnimation} alt="pants"></img>
 
                             <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseBottom}></img>
                         </div>
@@ -79,9 +77,9 @@ export default function Closet(props) {
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseOuter}></img>
 
-                            <img className="clothes-img rotator-prev-img" src={clothesCtx.outerClosetPrevImage} alt="outerwear"></img>
-                            <img className="clothes-img closet-img" src={clothesCtx.outerClosetImage} alt="outerwear"></img>
-                            <img className="clothes-img rotator-next-img" src={clothesCtx.outerClosetNextImage} alt="outerwear"></img>
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.outerClosetPrevImage ? clothesCtx.outerClosetPrevImage : loadingAnimation} alt="outerwear"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.outerClosetImage ? clothesCtx.outerClosetImage : loadingAnimation} alt="outerwear"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.outerClosetNextImage ? clothesCtx.outerClosetNextImage : loadingAnimation} alt="outerwear"></img>
 
                             <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseOuter}></img>
                         </div>
@@ -91,9 +89,9 @@ export default function Closet(props) {
                         <div className="img-container">
                             <img className="closet-icon" src={previous} alt="previous" onClick={clothesCtx.handleDecreaseShoes}></img>
 
-                            <img className="clothes-img rotator-prev-img" src={clothesCtx.shoesClosetPrevImage} alt="shoes"></img>
-                            <img className="clothes-img closet-img" src={clothesCtx.shoesClosetImage} alt="shoes"></img>
-                            <img className="clothes-img rotator-next-img" src={clothesCtx.shoesClosetNextImage} alt="shoes"></img>
+                            <img className="clothes-img rotator-prev-img" src={clothesCtx.shoesClosetPrevImage ? clothesCtx.shoesClosetPrevImage : loadingAnimation} alt="shoes"></img>
+                            <img className="clothes-img closet-img" src={clothesCtx.shoesClosetImage ? clothesCtx.shoesClosetImage : loadingAnimation} alt="shoes"></img>
+                            <img className="clothes-img rotator-next-img" src={clothesCtx.shoesClosetNextImage ? clothesCtx.shoesClosetNextImage : loadingAnimation} alt="shoes"></img>
 
                             <img className="closet-icon" src={next} alt="next" onClick={clothesCtx.handleIncreaseShoes}></img>
                         </div>
