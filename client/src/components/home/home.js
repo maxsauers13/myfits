@@ -15,14 +15,14 @@ export default function Home() {
         clothesCtx.getInventoryCount("shoes", clothesCtx.setMaxShoesIndex);
     }, [clothesCtx])
 
-    function handleGenerateRandomFit() {
+    function handleGenerateFit() {
         setTimeout(() => {
-            clothesCtx.generateRandomFit(clothesCtx.maxTopIndex, "shirt", clothesCtx.setTopFitImage);
-            clothesCtx.generateRandomFit(clothesCtx.maxBottomIndex, "pants", clothesCtx.setBottomFitImage);
-            clothesCtx.generateRandomFit(clothesCtx.maxOuterIndex, "outerwear", clothesCtx.setOuterFitImage);
-            clothesCtx.generateRandomFit(clothesCtx.maxShoesIndex, "shoes", clothesCtx.setShoesFitImage);
+            clothesCtx.generateFit("shirt", clothesCtx.styleSelect, clothesCtx.weatherSelect, clothesCtx.setTopFitImage);
+            clothesCtx.generateFit("pants", clothesCtx.styleSelect, clothesCtx.weatherSelect, clothesCtx.setBottomFitImage);
+            clothesCtx.generateFit("outerwear", clothesCtx.styleSelect, clothesCtx.weatherSelect, clothesCtx.setOuterFitImage);
+            clothesCtx.generateFit("shoes", clothesCtx.styleSelect, clothesCtx.weatherSelect, clothesCtx.setShoesFitImage);
             if (--loading) {
-                handleGenerateRandomFit(loading);
+                handleGenerateFit(loading);
             }
         }, 200);
     }
@@ -80,20 +80,20 @@ export default function Home() {
                             <div className="label">
                                 Style:
                             </div>
-                            <select className="select">
-                                <option value="Any">Any</option>
-                                <option value="Casual">Casual</option>
-                                <option value="Professional">Professional</option>
+                            <select className="select" onChange={(e) => { clothesCtx.setStyleSelect(e.target.value) }}>
+                                <option value="any">Any</option>
+                                <option value="casual">Casual</option>
+                                <option value="professional">Professional</option>
                             </select>
                         </div>
                         <div className="clothes-container">
                             <div className="label">
                                 Weather:
                             </div>
-                            <select className="select">
-                                <option value="Any">Any</option>
-                                <option value="Warm">Warm</option>
-                                <option value="Cold">Cold</option>
+                            <select className="select" onChange={(e) => { clothesCtx.setWeatherSelect(e.target.value) }}>
+                                <option value="any">Any</option>
+                                <option value="warm">Warm</option>
+                                <option value="cold">Cold</option>
                             </select>
                         </div>
                         <div className="clothes-container">
@@ -118,7 +118,7 @@ export default function Home() {
                             </div>
                         </div>
                         <div className="clothes-container">
-                            <button className="button" onClick={handleGenerateRandomFit}>Create Fit</button>
+                            <button className="button" onClick={handleGenerateFit}>Create Fit</button>
                         </div>
                     </div>
                 </div>

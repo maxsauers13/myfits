@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import Axios from 'axios';
+import logoIcon from '../img/logoIcon.png';
 
 const ClothesContext = createContext({
     topFitImage: "",
@@ -68,10 +69,32 @@ export function ClothesContextProvider(props) {
     const [warmCount, setWarmCount] = useState();
     const [coldCount, setColdCount] = useState();
 
+    const [styleSelect, setStyleSelect] = useState("any");
+    const [weatherSelect, setWeatherSelect] = useState("any");
+
     const [topCache, setTopCache] = useState({});
 
-    function generateRandomFit(maxIndex, category, setImage) {
+    function generateFit(category, style, weather, setImage) {
         Axios.post('http://localhost:3001/fit', {
+            owner: localStorage.getItem('token'),
+            category: category,
+            style: style,
+            weather: weather
+        }).then((response) => {
+            console.log(response);
+            if (response.data.length > 0) {
+                const index = Math.floor((Math.random() * response.data.length));
+                console.log(index);
+                const imageURL = response.data[index].image;
+                setImage(imageURL);
+            } else {
+                setImage(logoIcon);
+            }
+        })
+    }
+
+    function generateRandomFit(maxIndex, category, setImage) {
+        Axios.post('http://localhost:3001/randomFit', {
             maxIndex: maxIndex,
             owner: localStorage.getItem('token'),
             category: category
@@ -272,6 +295,8 @@ export function ClothesContextProvider(props) {
         professionalCount: professionalCount,
         warmCount: warmCount,
         coldCount: coldCount,
+        styleSelect: styleSelect,
+        weatherSelect: weatherSelect,
         topCache: topCache,
 
         setTopFitImage: setTopFitImage,
@@ -302,8 +327,11 @@ export function ClothesContextProvider(props) {
         setProfessionalCount: setProfessionalCount,
         setWarmCount: setWarmCount,
         setColdCount: setColdCount,
+        setStyleSelect: setStyleSelect,
+        setWeatherSelect: setWeatherSelect,
         setTopCache: setTopCache,
 
+        generateFit: generateFit,
         generateRandomFit: generateRandomFit,
         getInventoryCount: getInventoryCount,
         getClosetClothing: getClosetClothing,

@@ -104,11 +104,9 @@ app.post('/clothes', (req, res) => {
 })
 
 app.post('/allClothes', (req, res) => {
-    // const index = req.body.index;
     const owner = req.body.owner;
     const category = req.body.category;
 
-    // LIMIT ?) AS top ORDER BY id DESC LIMIT 1
     db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE (owner = ? AND category = ?) ORDER BY id) AS clothes",
         [owner, category],
         (err, result) => {
@@ -148,6 +146,36 @@ app.post('/inventoryCount', (req, res) => {
 })
 
 app.post('/fit', (req, res) => {
+    const owner = req.body.owner;
+    const category = req.body.category;
+    const style = req.body.style;
+    const weather = req.body.weather;
+
+    var styleQuery = "";
+    var weatherQuery = "";
+    var inputs = [owner, category];
+    if (style !== "any") {
+        styleQuery = "AND (style = ? OR style = 'any')";
+        inputs.push(style);
+    }
+    if (weather !== "any") {
+        weatherQuery = "AND (weather = ? OR weather = 'any')"
+        inputs.push(weather);
+    }
+
+    db.query("SELECT DISTINCT * FROM MyFits.Clothes WHERE (owner = ? AND category = ? " + styleQuery + weatherQuery + ")",
+        inputs,
+        (err, result) => {
+            if (err) {
+                res.send({ err: err });
+            }
+            else {
+                res.send(result);
+            }
+        })
+})
+
+app.post('/randomFit', (req, res) => {
     const owner = req.body.owner;
     const category = req.body.category;
     const index = Math.floor((Math.random() * req.body.maxIndex) + 1);
