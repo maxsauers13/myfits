@@ -14,7 +14,7 @@ app.use(cors());
 const db = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "****",
+    password: "Lville2019",
     database: "MyFits"
 });
 
@@ -93,6 +93,24 @@ app.post('/clothes', (req, res) => {
 
     db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE (owner = ? AND category = ?) ORDER BY id LIMIT ?) AS top ORDER BY id DESC LIMIT 1",
         [owner, category, index],
+        (err, result) => {
+            if (err) {
+                res.send({ err: err });
+            }
+            else {
+                res.send(result);
+            }
+        })
+})
+
+app.post('/allClothes', (req, res) => {
+    // const index = req.body.index;
+    const owner = req.body.owner;
+    const category = req.body.category;
+
+    // LIMIT ?) AS top ORDER BY id DESC LIMIT 1
+    db.query("SELECT * FROM (SELECT DISTINCT * FROM MyFits.Clothes WHERE (owner = ? AND category = ?) ORDER BY id) AS clothes",
+        [owner, category],
         (err, result) => {
             if (err) {
                 res.send({ err: err });

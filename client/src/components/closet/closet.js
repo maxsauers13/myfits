@@ -21,7 +21,10 @@ export default function Closet(props) {
     }, [clothesCtx])
 
     useEffect(() => {
-        clothesCtx.getClosetClothing(clothesCtx.topIndex, clothesCtx.maxTopIndex, "shirt", clothesCtx.setTopClosetImage, clothesCtx.setTopClosetNextImage, clothesCtx.setTopClosetPrevImage);
+        // console.log(clothesCtx.topCache);
+        if (!clothesCtx.topCache[0]) {
+            clothesCtx.cacheClothing(clothesCtx.topIndex, clothesCtx.maxTopIndex, "shirt", clothesCtx.setTopClosetImage, clothesCtx.setTopClosetNextImage, clothesCtx.setTopClosetPrevImage);
+        }
     }, [clothesCtx, clothesCtx.topIndex])
 
     useEffect(() => {
