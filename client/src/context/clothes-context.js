@@ -71,6 +71,10 @@ export function ClothesContextProvider(props) {
 
     const [styleSelect, setStyleSelect] = useState("any");
     const [weatherSelect, setWeatherSelect] = useState("any");
+    const [topToggle, setTopToggle] = useState(false);
+    const [bottomToggle, setBottomToggle] = useState(false);
+    const [outerToggle, setOuterToggle] = useState(false);
+    const [shoesToggle, setShoesToggle] = useState(false);
 
     const [topCache, setTopCache] = useState({});
 
@@ -81,10 +85,8 @@ export function ClothesContextProvider(props) {
             style: style,
             weather: weather
         }).then((response) => {
-            console.log(response);
             if (response.data.length > 0) {
                 const index = Math.floor((Math.random() * response.data.length));
-                console.log(index);
                 const imageURL = response.data[index].image;
                 setImage(imageURL);
             } else {
@@ -297,6 +299,10 @@ export function ClothesContextProvider(props) {
         coldCount: coldCount,
         styleSelect: styleSelect,
         weatherSelect: weatherSelect,
+        topToggle: topToggle,
+        bottomToggle: bottomToggle,
+        outerToggle: outerToggle,
+        shoesToggle: shoesToggle,
         topCache: topCache,
 
         setTopFitImage: setTopFitImage,
@@ -329,6 +335,10 @@ export function ClothesContextProvider(props) {
         setColdCount: setColdCount,
         setStyleSelect: setStyleSelect,
         setWeatherSelect: setWeatherSelect,
+        setTopToggle: setTopToggle,
+        setBottomToggle: setBottomToggle,
+        setOuterToggle: setOuterToggle,
+        setShoesToggle: setShoesToggle,
         setTopCache: setTopCache,
 
         generateFit: generateFit,

@@ -51,21 +51,21 @@ export default function Home() {
                     <div className="column">
                         <div className="clothes-container">
                             Top:
-                            <img className="clothes-img shirt-img" src={clothesCtx.topFitImage ? clothesCtx.topFitImage : logoIcon} alt="Shirt"></img>
+                            <img className="clothes-img shirt-img" src={clothesCtx.topFitImage && !clothesCtx.topToggle ? clothesCtx.topFitImage : logoIcon} alt="Shirt"></img>
                         </div>
                         <div className="clothes-container">
                             Bottom:
-                            <img className="clothes-img pants-img" src={clothesCtx.bottomFitImage ? clothesCtx.bottomFitImage : logoIcon} alt="Pants"></img>
+                            <img className="clothes-img pants-img" src={clothesCtx.bottomFitImage && !clothesCtx.bottomToggle ? clothesCtx.bottomFitImage : logoIcon} alt="Pants"></img>
                         </div>
                     </div>
                     <div className="column">
                         <div className="clothes-container">
                             Outerwear:
-                            <img className="clothes-img shirt-img" src={clothesCtx.outerFitImage ? clothesCtx.outerFitImage : logoIcon} alt="Outerwear"></img>
+                            <img className="clothes-img shirt-img" src={clothesCtx.outerFitImage && !clothesCtx.outerToggle ? clothesCtx.outerFitImage : logoIcon} alt="Outerwear"></img>
                         </div>
                         <div className="clothes-container">
                             Shoes:
-                            <img className="clothes-img pants-img" src={clothesCtx.shoesFitImage ? clothesCtx.shoesFitImage : logoIcon} alt="Shoes"></img>
+                            <img className="clothes-img pants-img" src={clothesCtx.shoesFitImage && !clothesCtx.shoesToggle ? clothesCtx.shoesFitImage : logoIcon} alt="Shoes"></img>
                         </div>
                     </div>
                 </div>
@@ -101,19 +101,19 @@ export default function Home() {
                                 Toggle Clothing Items:
                             </div>
                             <div className="checkbox">
-                                <input type="checkbox" />
+                                <input type="checkbox" onChange={(e) => { clothesCtx.setTopToggle(e.target.checked) }} />
                                 Top
                             </div>
                             <div className="checkbox">
-                                <input type="checkbox" />
+                                <input type="checkbox" onChange={(e) => { clothesCtx.setBottomToggle(e.target.checked) }} />
                                 Bottom
                             </div>
                             <div className="checkbox">
-                                <input type="checkbox" />
+                                <input type="checkbox" onChange={(e) => { clothesCtx.setOuterToggle(e.target.checked) }} />
                                 Outerwear
                             </div>
                             <div className="checkbox">
-                                <input type="checkbox" />
+                                <input type="checkbox" onChange={(e) => { clothesCtx.setShoesToggle(e.target.checked) }} />
                                 Shoes
                             </div>
                         </div>
