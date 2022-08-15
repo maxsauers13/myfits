@@ -16,6 +16,7 @@ CORS(app)
 def post():
     # read image in cv2
     filename = datadir + request.form['file']
+    print(filename)
     image = cv2.imread(filename)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
@@ -41,10 +42,13 @@ def post():
 
     top_colors = sorted(pixel_samples.items(),
                         key=lambda x: x[1], reverse=True)[:3]
+    # get only first color
+    top_color = sorted(pixel_samples.items(),
+                       key=lambda x: x[1], reverse=True)[:1]
 
     print(top_colors)
 
-    return {'top_colors': top_colors}
+    return {'top_color': top_color[0][0]}
 
 
 if __name__ == '__main__':

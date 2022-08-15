@@ -76,21 +76,11 @@ app.post("/closetAdd", upload.single('file'), async (req, res) => {
         const category = req.body.category;
         const style = req.body.style;
         const weather = req.body.weather;
+        var color = await colorAlgorithm(req.file.filename);
+        console.log(color);
 
-        var formData = new FormData()
-        formData.append('file', req.file.filename);
-        Axios.post("http://127.0.0.1:5000/algorithm", formData).then(
-            (response) => {
-                var result = response.data;
-                console.log(result);
-            },
-            (error) => {
-                console.log(error);
-            }
-        )
-
-        var insertData = "INSERT INTO Clothes (image, owner, category, style, weather) VALUES (?, ?, ?, ?, ?)";
-        db.query(insertData, [imgsrc, owner, category, style, weather], (err, result) => {
+        var insertData = "INSERT INTO Clothes (image, owner, category, style, weather, color) VALUES (?, ?, ?, ?, ?, ?)";
+        db.query(insertData, [imgsrc, owner, category, style, weather, color], (err, result) => {
             if (err) {
                 console.log("error: " + err);
             } else {
@@ -100,7 +90,7 @@ app.post("/closetAdd", upload.single('file'), async (req, res) => {
     }
 });
 
-app.post('/clothes', (req, res) => {
+app.post('/clothes', async (req, res) => {
     const index = req.body.index;
     const owner = req.body.owner;
     const category = req.body.category;
@@ -114,7 +104,25 @@ app.post('/clothes', (req, res) => {
             else {
                 res.send(result);
             }
-        })
+        }
+    )
+
+    // try {
+    //     color = colorAlgorithm(image);
+    // } catch (err) {
+    //     console.log(err);
+    // }
+
+    // db.query("UPDATE MyFits.Clothes SET Color = ? WHERE Image = ?",
+    //     [color, image],
+    //     (err, result) => {
+    //         if (err) {
+    //             console.log(err);
+    //         } else {
+    //             console.log(result);
+    //         }
+    //     }
+    // )
 })
 
 app.post('/inventoryCount', (req, res) => {
@@ -193,3 +201,16 @@ app.post('/randomFit', (req, res) => {
 app.listen(3001, () => {
     console.log("running server");
 });
+
+async function colorAlgorithm(filename) {
+    var formData = new FormData()
+    formData.append('file', filename);
+    var answer = await Axios.post("http://127.0.0.1:5000/algorithm", formData).then(
+        response => {
+            var result = response.data;
+            return result['top_color'];
+        }
+    )
+
+    return answer;
+}
