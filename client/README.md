@@ -1,3 +1,0 @@
-# MyFits
-
-author: Max Sauers

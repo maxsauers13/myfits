@@ -1,8 +1,10 @@
+const Axios = require("Axios");
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const multer = require('multer');
 const path = require('path');
+const FormData = require('form-data');
 
 const app = express();
 
@@ -14,7 +16,7 @@ app.use(cors());
 const db = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "****",
+    password: "Lville2019",
     database: "MyFits"
 });
 
@@ -64,7 +66,7 @@ var upload = multer({
     storage: storage
 });
 
-app.post("/closetAdd", upload.single('file'), (req, res) => {
+app.post("/closetAdd", upload.single('file'), async (req, res) => {
     if (!req.file) {
         console.log("No file upload");
     } else {
@@ -74,6 +76,18 @@ app.post("/closetAdd", upload.single('file'), (req, res) => {
         const category = req.body.category;
         const style = req.body.style;
         const weather = req.body.weather;
+
+        var formData = new FormData()
+        formData.append('file', req.file.filename);
+        Axios.post("http://127.0.0.1:5000/algorithm", formData).then(
+            (response) => {
+                var result = response.data;
+                console.log(result);
+            },
+            (error) => {
+                console.log(error);
+            }
+        )
 
         var insertData = "INSERT INTO Clothes (image, owner, category, style, weather) VALUES (?, ?, ?, ?, ?)";
         db.query(insertData, [imgsrc, owner, category, style, weather], (err, result) => {
