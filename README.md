@@ -6,15 +6,15 @@ author: Max Sauers
 
 #### Home Page
 
-![home page](https://github.com/maxsauers13/myfits/blob/master/homepage.png?raw=true)
+![home page](https://https://github.com/maxsauers13/myfits/blob/master/client/src/img/homepage.png?raw=true)
 
 #### Closet Page
 
-![closet page](https://github.com/maxsauers13/myfits/blob/master/closetpage.png?raw=true)
+![closet page](https://https://github.com/maxsauers13/myfits/blob/master/client/src/img/closetpage.png?raw=true)
 
 #### Login Page
 
-![login page](https://github.com/maxsauers13/myfits/blob/master/loginpage.png?raw=true)
+![login page](https://https://github.com/maxsauers13/myfits/blob/master/client/src/img/loginpage.png?raw=true)
 
 ## How to Run
 
