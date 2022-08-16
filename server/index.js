@@ -77,7 +77,6 @@ app.post("/closetAdd", upload.single('file'), async (req, res) => {
         const style = req.body.style;
         const weather = req.body.weather;
         var color = await colorAlgorithm(req.file.filename);
-        console.log(color);
 
         var insertData = "INSERT INTO Clothes (image, owner, category, style, weather, color) VALUES (?, ?, ?, ?, ?, ?)";
         db.query(insertData, [imgsrc, owner, category, style, weather, color], (err, result) => {
